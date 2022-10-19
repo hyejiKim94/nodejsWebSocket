@@ -6,7 +6,11 @@ const app = express()
 const port = process.env.PORT || 3000
 const wssPort = process.env.WSS_PORT || 3001
 
+
+const http = require('http').createServer(app);
+
 const wss = new WebSocketServer({ port: wssPort });
+// const wss = new WebSocketServer({ server });
 const dirName = `${__dirname}/public`
 let pageNum = 1;
 
@@ -155,6 +159,6 @@ function getResult() {
 const roundingOff = (num) => parseFloat(num / answerList.length * 100).toFixed(2);
 
 
-app.listen(port, () => {
+http.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
