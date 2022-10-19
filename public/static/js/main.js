@@ -1,5 +1,64 @@
 // const ws = new WebSocket("ws://18.183.77.192:3001")
-const ws = new WebSocket("ws://localhost:3001", 'a');
+
+new Promise((resolve, reject) => {
+    const ws = new WebSocket("ws://18.183.77.192:3001");
+    resolve(ws);
+}).then((ws) => {
+    ws instanceof WebSocket;
+    ws.onmessage = (data) => {
+        console.log('ws has message');
+        const dataArr = String(data.data).split('::');
+        const cmdType = dataArr[0];
+        if (cmdType === 'page') {
+            location.href='/page';
+        }
+        if (cmdType === 'session') {
+            console.log('get session', window.sessionStorage.getItem('userID'));
+            if (!window.sessionStorage.getItem('userID')) {
+                window.sessionStorage.setItem('userID', dataArr[1]);
+            }
+        }
+        if (cmdType === 'sessionClear') {
+            if (window.sessionStorage.getItem('userID')) {
+                window.sessionStorage.removeItem('userID');
+            }
+        }
+        if (cmdType === 'control') {
+            const controlType = dataArr[1];
+            interfaceControl(controlType);
+        }
+        if (cmdType === 'result') {
+            showResult(dataArr[1], dataArr[2]);
+        } 
+    }
+})
+// const ws = new WebSocket("ws://localhost:3001");
+// ws.onmessage = (data) => {
+//     console.log('ws has message');
+//     const dataArr = String(data.data).split('::');
+//     const cmdType = dataArr[0];
+//     if (cmdType === 'page') {
+//         location.href='/page';
+//     }
+//     if (cmdType === 'session') {
+//         console.log('get session', window.sessionStorage.getItem('userID'));
+//         if (!window.sessionStorage.getItem('userID')) {
+//             window.sessionStorage.setItem('userID', dataArr[1]);
+//         }
+//     }
+//     if (cmdType === 'sessionClear') {
+//         if (window.sessionStorage.getItem('userID')) {
+//             window.sessionStorage.removeItem('userID');
+//         }
+//     }
+//     if (cmdType === 'control') {
+//         const controlType = dataArr[1];
+//         interfaceControl(controlType);
+//     }
+//     if (cmdType === 'result') {
+//         showResult(dataArr[1], dataArr[2]);
+//     }
+// }
 
 const answerEls = document.getElementsByClassName('answerBtn');
 const btnTxtEls = document.getElementsByClassName('btnTxt');
