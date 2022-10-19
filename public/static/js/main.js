@@ -69,12 +69,9 @@ ws.onmessage = (data) => {
     if (cmdType === 'currentPage') {
         console.log(`currentPage is ${dataArr[1]}`);
         const openedPage = document.getElementById('curPage').getAttribute('value');
-        if (!openedPage) {
-            document.getElementsByClassName('loading')[0].setAttribute('style', 'opacity: 1');
-        } else  if (Number(dataArr[1]) !== Number(openedPage)) {
+        if (openedPage && Number(dataArr[1]) !== Number(openedPage)) {
             console.log('page is not matched');
             document.getElementsByClassName('quizWrapper')[0].remove();
-            document.getElementsByClassName('loading')[0].remove();
             document.getElementsByClassName('notAvailable')[0].setAttribute('style', 'opacity: 1');
         }
 
