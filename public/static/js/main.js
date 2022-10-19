@@ -1,4 +1,4 @@
-const ws = new WebSocket("ws://52.199.247.85:3001")
+const ws = new WebSocket("ws://18.183.77.192:3001")
 // const ws = new WebSocket("wss://localhost:3001");
 // const ws = new WebSocket("https://1291-153-156-28-29.jp.ngrok.io")
 
