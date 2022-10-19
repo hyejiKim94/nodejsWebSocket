@@ -30,8 +30,8 @@
         <button class="adminControl" value="sessionClear" onclick="doSome(this.value)">SessionClear</button>
     </div>
     <script>
-        const ws = new WebSocket("ws://18.183.77.192:3001")
-        // const ws = new WebSocket("ws://localhost:3001");
+        // const ws = new WebSocket("ws://localhost:3001")
+        const ws = new WebSocket("ws://18.183.77.192:3001");
         console.log('admin side ws check', ws);
         ws.onmessage = (data) => {
             console.log(`admin side Socket: ${data}`);
@@ -60,14 +60,6 @@
                     ws.send('admin::sessionClear');
                     break;
             }
-            // console.log('get Action', action);
-            // if (action === 'prevQuiz') {
-            //     ws.send('admin::prevQuiz');
-            // } else if (action === 'nextQuiz') {
-            //     ws.send('admin::nextQuiz');
-            // } else {
-            //     ws.send('admin::something3');
-            // }
         }
     </script>
   </body>

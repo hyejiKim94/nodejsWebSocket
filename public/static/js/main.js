@@ -1,40 +1,5 @@
-const ws = new WebSocket("ws://18.183.77.192:3001")
-
-// const ws = new WebSocket("ws://localhost:3001");
-ws.onmessage = (data) => {
-    console.log('ws has message', data);
-    const dataArr = String(data.data).split('::');
-    const cmdType = dataArr[0];
-    if (cmdType === 'page') {
-        location.href=`/page/${dataArr[1]}`;
-    }
-    if (cmdType === 'next') {
-        const curPage = document.getElementById('curPage').getAttribute('value');
-        location.href=`/page/${Number(curPage) + 1}`;
-    }
-    if (cmdType === 'prev') {
-        const curPage = document.getElementById('curPage').getAttribute('value');
-        location.href=`/page/${Number(curPage) - 1}`;
-    }
-    if (cmdType === 'session') {
-        console.log('get session', window.sessionStorage.getItem('userID'));
-        if (!window.sessionStorage.getItem('userID')) {
-            window.sessionStorage.setItem('userID', dataArr[1]);
-        }
-    }
-    if (cmdType === 'sessionClear') {
-        if (window.sessionStorage.getItem('userID')) {
-            window.sessionStorage.removeItem('userID');
-        }
-    }
-    if (cmdType === 'control') {
-        const controlType = dataArr[1];
-        interfaceControl(controlType);
-    }
-    if (cmdType === 'result') {
-        showResult(dataArr[1], dataArr[2]);
-    }
-}
+// const ws = new WebSocket("ws://localhost:3001")
+const ws = new WebSocket("ws://18.183.77.192:3001");
 
 const answerEls = document.getElementsByClassName('answerBtn');
 const btnTxtEls = document.getElementsByClassName('btnTxt');
@@ -91,6 +56,32 @@ const showResult = (answerNum, resultData) => {
         } else {
             resultEls[i].parentElement.classList.add('wrong');
         }
+    }
+}
+
+ws.onmessage = (data) => {
+    const dataArr = String(data.data).split('::');
+    const cmdType = dataArr[0];
+    if (cmdType === 'page') {
+        location.href='/page';
+    }
+    if (cmdType === 'session') {
+        console.log('get session', window.sessionStorage.getItem('userID'));
+        if (!window.sessionStorage.getItem('userID')) {
+            window.sessionStorage.setItem('userID', dataArr[1]);
+        }
+    }
+    if (cmdType === 'sessionClear') {
+        if (window.sessionStorage.getItem('userID')) {
+            window.sessionStorage.removeItem('userID');
+        }
+    }
+    if (cmdType === 'control') {
+        const controlType = dataArr[1];
+        interfaceControl(controlType);
+    }
+    if (cmdType === 'result') {
+        showResult(dataArr[1], dataArr[2]);
     }
 }
 
