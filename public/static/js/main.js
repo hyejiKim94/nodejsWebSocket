@@ -1,6 +1,4 @@
 const ws = new WebSocket("ws://52.199.247.85:3001")
-// ws.url = ws.url.replace("ws","http");
-// console.log(ws);
 // const ws = new WebSocket("wss://localhost:3001");
 // const ws = new WebSocket("https://1291-153-156-28-29.jp.ngrok.io")
 

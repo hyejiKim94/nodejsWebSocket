@@ -25,6 +25,8 @@ app.get('/admin', (_, res) => {
 })
 
 app.get('/page', (_, res) => {
+    console.log(`html go to quiz${pageNum}.html`);
+    console.log(`root Dir: ${dirName}`);
     res.sendFile(`quiz${pageNum}.html`, { root: dirName });
 })
 
@@ -70,6 +72,7 @@ wss.on("connection", (ws, request) => {
                     }
                 break;
                 case 'nextQuiz':
+                    console.log(`currentPage is ${pageNum}`)
                     if (pageNum == 10) {
                         wss.broadcast('adminError::noNextPage');
                     } else {
