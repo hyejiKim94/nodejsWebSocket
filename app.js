@@ -41,9 +41,6 @@ app.get('/start', (_, res) => {
 })
 
 app.get('/page/:num', (req, res) => {
-    seq = 0;
-    userList.clear();
-    answerInfo = [];
     console.log(`will go to quiz${req.params.num}.html`);
     const getNum = Number(req.params.num);
     if (getNum === 0) {
@@ -88,9 +85,8 @@ wss.on("connection", (ws, request) => {
                     } else {
                         seq = 0;
                         userList.clear();
-                        answerInfo = [];
+                        answerList = [];
                         --pageNum;
-                        // wss.broadcast('page');
                         wss.broadcast(`page::${pageNum}`);
                     }
                 break;
@@ -100,9 +96,9 @@ wss.on("connection", (ws, request) => {
                     } else {
                         seq = 0;
                         userList.clear();
-                        answerInfo = [];
+                        answerList = [];
                         ++pageNum;
-                        // wss.broadcast(`page`)
+                        console.log('answerList init', answerList);
                         wss.broadcast(`page::${pageNum}`);              
                     }
                 break;
@@ -121,16 +117,17 @@ wss.on("connection", (ws, request) => {
                 case 'sessionClear':
                     seq = 0;
                     userList.clear();
-                    answerInfo = [];
+                    answerList = [];
                     wss.broadcast('sessionClear');
                     break;
                     
             }
-        } else if (cmdType === 'answer') {
+        } 
+        if (cmdType === 'answer') {
             const user = msgArr[1];
             const answer = msgArr[2];
             // console.log(`answer clicked ${answer} from ${user}`)
-            // console.log(`user :${user}`);
+            // console.log(`userList :`, userList);
             if (userList.has(user)) {
                 // console.log('DUPLICATED!')
                 answerList.map((data) => {
