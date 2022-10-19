@@ -24,11 +24,11 @@ app.get('/admin', (_, res) => {
     res.sendFile('admin.html', { root: dirName });
 })
 
-// app.get('/page', (_, res) => {
-//     console.log(`will send file quiz${pageNum}.html`);
-//     res.setHeader('Cache-Control', 'no-cache');
-//     res.sendFile(`quiz${pageNum}.html`, { root: dirName });
-// })
+app.get('/start', (_, res) => {
+    console.log(`start from quiz${pageNum}.html`);
+    res.setHeader('Cache-Control', 'no-cache');
+    res.sendFile(`quiz${pageNum}.html`, { root: dirName });
+})
 
 app.get('/page/:num', (req, res) => {
     console.log(`will go to quiz${req.params.num}.html`);
@@ -63,8 +63,9 @@ const answerArr = [ process.env.ANSWER_1, process.env.ANSWER_2, process.env.ANSW
 wss.on("connection", (ws, request) => {
     seq++;
     wss.clients.forEach(client => {
-        client.send(`how many users?? ${wss.clients.size}`)
-        client.send(`session::user${seq}`)
+        // client.send(`how many users?? ${wss.clients.size}`)
+        // client.send(`session::user${seq}`)
+        client.send(`currentPage::${pageNum}`);
     });
     ws.on('message', data => {
         const msgArr = data.toString().split("::");
@@ -87,7 +88,8 @@ wss.on("connection", (ws, request) => {
                         userList.clear();
                         answerInfo = [];
                         --pageNum;
-                        wss.broadcast('page');
+                        // wss.broadcast('page');
+                        wss.broadcast(`page::${pageNum}`);
                     }
                 break;
                 case 'nextQuiz':
@@ -98,7 +100,8 @@ wss.on("connection", (ws, request) => {
                         userList.clear();
                         answerInfo = [];
                         ++pageNum;
-                        wss.broadcast(`page`)                
+                        // wss.broadcast(`page`)
+                        wss.broadcast(`page::${pageNum}`);              
                     }
                 break;
                 case 'lock':

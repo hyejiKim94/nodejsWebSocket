@@ -114,6 +114,16 @@ img {
     font-weight: 600;
     font-family: 'M PLUS Rounded 1c', sans-serif;
 }
+.notAvailable {
+    opacity: 0;
+    font-size: 50px;
+    text-align: center;
+    font-weight: 800;
+}
+.emoji {
+    color: white;
+    text-shadow: 0px 0px 3px black;
+}
 
 pre {
     color: black;
