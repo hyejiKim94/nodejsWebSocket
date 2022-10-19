@@ -64,7 +64,7 @@ wss.on("connection", (ws, request) => {
     seq++;
     wss.clients.forEach(client => {
         // client.send(`how many users?? ${wss.clients.size}`)
-        // client.send(`session::user${seq}`)
+        client.send(`session::user${seq}`)
         client.send(`currentPage::${pageNum}`);
     });
     ws.on('message', data => {
