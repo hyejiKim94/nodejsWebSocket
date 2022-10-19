@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
+* {
+    font-family: 'Rampart One';
+}
+.title {
+    display: flex;
+    justify-content: center;
+    font-size: 110px;
+}
+.space {
+    width: 150px;
+}
+.starImg {
+    width: 100px;
+    height: auto;
+}
+.line {
+    width: 100%;
+    height: 10px;
+    background: black;
+}
+.menuRow {
+    display: flex;
+}
+.adminControl {
+    width: 50%;
+    margin: 10px 15px;
+    cursor: pointer;
+    padding: 25px;
+    background: white;
+    font-size: 40px;
+    border: thick double black;
+    border-radius: 15px;
+}
+.adminControl:hover {
+    color: white;
+}
+.adminControl:nth-child(even):hover {
+    background: #046d66;
+}
+.adminControl:nth-child(odd):hover {
+    background: #7c0238;
+}
+/* #7c0238 */
+/* .adminControl::before {
+    content: url('/static/img/prev.svg');
+    width: 40px;
+} */
