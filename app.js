@@ -29,6 +29,36 @@ app.get('/page', (_, res) => {
     console.log(`root Dir: ${dirName}`);
     res.sendFile(`quiz${pageNum}.html`, { root: dirName });
 })
+app.get('/page/1', (_, res) => {
+    if (pageNum === 1) {
+        res.sendFile(`quiz1.html`, { root: dirName });
+    }
+    res.redirect('/page');
+})
+app.get('/page/2', (_, res) => {
+    if (pageNum === 2) {
+        res.sendFile(`quiz2.html`, { root: dirName });
+    }
+    res.redirect('/page');
+})
+app.get('/page/3', (_, res) => {
+    if (pageNum === 3) {
+        res.sendFile(`quiz3.html`, { root: dirName });
+    }
+    res.redirect('/page');
+})
+app.get('/page/4', (_, res) => {
+    if (pageNum === 4) {
+        res.sendFile(`quiz4.html`, { root: dirName });
+    }
+    res.redirect('/page');
+})
+app.get('/page/5', (_, res) => {
+    if (pageNum === 5) {
+        res.sendFile(`quiz5.html`, { root: dirName });
+    }
+    res.redirect('/page');
+})
 
 wss.broadcast = (message) => {
     wss.clients.forEach((client) => {
@@ -68,7 +98,8 @@ wss.on("connection", (ws, request) => {
                         userList.clear();
                         answerInfo = [];
                         --pageNum;
-                        wss.broadcast('page');
+                        // wss.broadcast('page');
+                        wss.broadcast('prev')
                     }
                 break;
                 case 'nextQuiz':
@@ -80,7 +111,8 @@ wss.on("connection", (ws, request) => {
                         userList.clear();
                         answerInfo = [];
                         ++pageNum;
-                        wss.broadcast(`page`)                
+                        // wss.broadcast(`page::${pageNum}`)
+                        wss.broadcast(`next`);               
                     }
                 break;
                 case 'lock':

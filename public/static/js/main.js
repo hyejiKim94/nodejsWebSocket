@@ -2,12 +2,19 @@ const ws = new WebSocket("ws://18.183.77.192:3001")
 
 // const ws = new WebSocket("ws://localhost:3001");
 ws.onmessage = (data) => {
-    console.log('ws has message');
+    console.log('ws has message', data);
     const dataArr = String(data.data).split('::');
     const cmdType = dataArr[0];
     if (cmdType === 'page') {
-        ws.close();
-        location.href='/page';
+        location.href=`/page/${dataArr[1]}`;
+    }
+    if (cmdType === 'next') {
+        const curPage = document.getElementById('curPage').getAttribute('value');
+        location.href=`/page/${Number(curPage) + 1}`;
+    }
+    if (cmdType === 'prev') {
+        const curPage = document.getElementById('curPage').getAttribute('value');
+        location.href=`/page/${Number(curPage) - 1}`;
     }
     if (cmdType === 'session') {
         console.log('get session', window.sessionStorage.getItem('userID'));
