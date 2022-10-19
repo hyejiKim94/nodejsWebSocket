@@ -62,15 +62,28 @@ const showResult = (answerNum, resultData) => {
 ws.onmessage = (data) => {
     const dataArr = String(data.data).split('::');
     const cmdType = dataArr[0];
-    if (cmdType === 'page') {
-        location.href='/page';
-    }
-    // if (cmdType === 'session') {
-    //     console.log('get session', window.sessionStorage.getItem('userID'));
-    //     if (!window.sessionStorage.getItem('userID')) {
-    //         window.sessionStorage.setItem('userID', dataArr[1]);
-    //     }
+    // if (cmdType === 'page') {
+    //     location.href='/page';
     // }
+    if(cmdType === 'prev') {
+        console.log('prev come??');
+        const alink = document.createElement('a');
+        const curPage = document.getElementById('curPage').getAttribute('value');
+        alink.setAttribute('href', `/page/${Number(curPage)-1}`);
+        alink.click();
+    }
+    if(cmdType === 'next') {
+        const alink = document.createElement('a');
+        const curPage = document.getElementById('curPage').getAttribute('value');
+        alink.setAttribute('href', `/page/${Number(curPage)+1}`);
+        alink.click();
+    }
+    if (cmdType === 'session') {
+        console.log('get session', window.sessionStorage.getItem('userID'));
+        if (!window.sessionStorage.getItem('userID')) {
+            window.sessionStorage.setItem('userID', dataArr[1]);
+        }
+    }
     if (cmdType === 'sessionClear') {
         if (window.sessionStorage.getItem('userID')) {
             window.sessionStorage.removeItem('userID');

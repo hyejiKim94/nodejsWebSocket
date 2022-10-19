@@ -24,10 +24,22 @@ app.get('/admin', (_, res) => {
     res.sendFile('admin.html', { root: dirName });
 })
 
-app.get('/page', (_, res) => {
-    console.log(`will send file quiz${pageNum}.html`);
-    res.setHeader('Cache-Control', 'no-cache');
-    res.sendFile(`quiz${pageNum}.html`, { root: dirName });
+// app.get('/page', (_, res) => {
+//     console.log(`will send file quiz${pageNum}.html`);
+//     res.setHeader('Cache-Control', 'no-cache');
+//     res.sendFile(`quiz${pageNum}.html`, { root: dirName });
+// })
+
+app.get('/page/:num', (req, res) => {
+    console.log(`will go to quiz${req.params.num}.html`);
+    const getNum = Number(req.params.num);
+    if (getNum === 0) {
+        res.sendFile(`quiz1.html`, { root: dirName });
+    } else if (getNum === 11) {
+        res.sendFile(`quiz10.html`, { root: dirName });
+    } else {
+        res.sendFile(`quiz${getNum}.html`, { root: dirName });
+    }
 })
 
 wss.broadcast = (message) => {
@@ -61,6 +73,12 @@ wss.on("connection", (ws, request) => {
             console.log('admin action');
             const adminAction = msgArr[1];
             switch(adminAction) {
+                case 'prev':
+                    wss.broadcast('prev');
+                    break;
+                case 'next':
+                    wss.broadcast('next');
+                    break;
                 case 'prevQuiz':
                     if (pageNum == 1) {
                         wss.broadcast('adminError::noPrevPage');
