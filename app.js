@@ -6,6 +6,16 @@ const app = express()
 const port = process.env.PORT || 3000
 const wssPort = process.env.WSS_PORT || 3001
 
+// User Sequence
+let seq = 0
+// User List
+let userList = new Set();
+// User's Answer List [{user, answer}]
+let answerList = new Array();
+// Quiz Answer List, is there any other way to hide answer list ??? instead of using env params...
+const answerArr = [ process.env.ANSWER_1, process.env.ANSWER_2, process.env.ANSWER_3
+    ,process.env.ANSWER_4, process.env.ANSWER_5, process.env.ANSWER_6
+    ,process.env.ANSWER_7, process.env.ANSWER_8, process.env.ANSWER_9, process.env.ANSWER_10 ];
 
 const http = require('http').createServer(app);
 
@@ -31,6 +41,9 @@ app.get('/start', (_, res) => {
 })
 
 app.get('/page/:num', (req, res) => {
+    seq = 0;
+    userList.clear();
+    answerInfo = [];
     console.log(`will go to quiz${req.params.num}.html`);
     const getNum = Number(req.params.num);
     if (getNum === 0) {
@@ -47,17 +60,6 @@ wss.broadcast = (message) => {
         client.send(message);
     })
 }
-
-// User Sequence
-let seq = 0
-// User List
-let userList = new Set();
-// User's Answer List [{user, answer}]
-let answerList = new Array();
-// Quiz Answer List, is there any other way to hide answer list ??? instead of using env params...
-const answerArr = [ process.env.ANSWER_1, process.env.ANSWER_2, process.env.ANSWER_3
-    ,process.env.ANSWER_4, process.env.ANSWER_5, process.env.ANSWER_6
-    ,process.env.ANSWER_7, process.env.ANSWER_8, process.env.ANSWER_9, process.env.ANSWER_10 ];
 
 
 wss.on("connection", (ws, request) => {
