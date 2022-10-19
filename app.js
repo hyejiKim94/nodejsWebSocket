@@ -124,6 +124,10 @@ wss.on("connection", (ws, request) => {
             }
         }
     })
+
+    ws.on('error', (err) => {
+        console.log('webSocket err', err);
+    })
 })
 
 
