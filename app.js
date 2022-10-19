@@ -25,6 +25,8 @@ app.get('/admin', (_, res) => {
 })
 
 app.get('/page', (_, res) => {
+    console.log(`will send file quiz${pageNum}.html`);
+    res.setHeader('Cache-Control', 'no-cache');
     res.sendFile(`quiz${pageNum}.html`, { root: dirName });
 })
 
@@ -56,6 +58,7 @@ wss.on("connection", (ws, request) => {
         const msgArr = data.toString().split("::");
         const cmdType = msgArr[0];
         if (cmdType === 'admin') {
+            console.log('admin action');
             const adminAction = msgArr[1];
             switch(adminAction) {
                 case 'prevQuiz':
