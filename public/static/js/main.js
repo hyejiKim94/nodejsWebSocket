@@ -8,7 +8,6 @@ const resultEls = document.getElementsByClassName('quizResult');
 const interfaceControl = (controlType) => {
     switch(controlType) {
         case 'lock':
-            console.log('lock   ', answerEls.length);
             for(let i = 0; i < answerEls.length; i++) {
                 answerEls[i].setAttribute('disabled', 'disabled');
                 answerEls[i].removeAttribute('value');
@@ -41,13 +40,17 @@ const interfaceControl = (controlType) => {
                 }
             }, 1000);
             break;
+        case 'show':
+            document.getElementsByClassName('quizWrapper')[0].classList.remove('hide');
+            document.getElementsByClassName('quizWrapper')[0].classList.add('show');
+            //    document.getElementsByClassName('quizWrapper')[0].setAttribute('style', 'opacity: 1;');
+            break;
+
     }
 }
 
 const showResult = (answerNum, resultData) => {
-    console.log('answer', answerNum);
     const resultDataArr = String(resultData).split(',');
-    console.log('result Data', resultDataArr);
     // const displayEl = document.getElementsByClassName('quizResult');
     for (let i = 0; i < resultEls.length; i++) {
         resultEls[i].innerHTML = resultDataArr[i];
@@ -62,19 +65,21 @@ const showResult = (answerNum, resultData) => {
 ws.onmessage = (data) => {
     const dataArr = String(data.data).split('::');
     const cmdType = dataArr[0];
-    // if (cmdType === 'page') {
-    //     location.href='/page';
-    // }
-    console.log(`dataArr`, dataArr);
     if (cmdType === 'currentPage') {
-        console.log(`currentPage is ${dataArr[1]}`);
-        const openedPage = document.getElementById('curPage').getAttribute('value');
-        if (openedPage && Number(dataArr[1]) !== Number(openedPage)) {
-            console.log('page is not matched');
+        if(Number(dataArr[1]) === 1) {
+            console.log(`check display, quizs started? ${dataArr[2]}`);
+            if(dataArr[2] == 'true') {
+                console.log('turue')
+                document.getElementsByClassName('quizWrapper')[0].classList.remove('hide');
+                document.getElementsByClassName('quizWrapper')[0].classList.add('show');
+                // document.getElementsByClassName('quizWrapper')[0].setAttribute('style', 'opacity: 1;');
+            }
+        }
+        const openedPage = document.getElementById('curPage');
+        if (openedPage && Number(dataArr[1]) !== Number(openedPage.getAttribute('value'))) {
             document.getElementsByClassName('quizWrapper')[0].remove();
             document.getElementsByClassName('notAvailable')[0].setAttribute('style', 'opacity: 1');
         }
-
     }
     if (cmdType === 'page') {
         const targetPage = dataArr[1];
@@ -83,7 +88,6 @@ ws.onmessage = (data) => {
         alink.click();
     }
     if(cmdType === 'prev') {
-        console.log('prev come??');
         const alink = document.createElement('a');
         const curPage = document.getElementById('curPage').getAttribute('value');
         alink.setAttribute('href', `/page/${Number(curPage)-1}`);
@@ -96,7 +100,6 @@ ws.onmessage = (data) => {
         alink.click();
     }
     if (cmdType === 'session') {
-        console.log('get session', window.sessionStorage.getItem('userID'));
         if (!window.sessionStorage.getItem('userID')) {
             window.sessionStorage.setItem('userID', dataArr[1]);
         }
@@ -121,7 +124,6 @@ function answerBtn(value) {
         if (value == i + 1) {
             answerEls[i].setAttribute('disabled', 'disabled');
             answerEls[i].classList.add('clicked');
-            console.log(answerEls[i].classList)
         } else {
             answerEls[i].removeAttribute('disabled');
             answerEls[i].removeAttribute('style');
@@ -129,6 +131,5 @@ function answerBtn(value) {
         }
     }
     const userId = window.sessionStorage.getItem('userID');
-    console.log('userID :', userId);
     ws.send(`answer::${userId}::${value}`);
 }

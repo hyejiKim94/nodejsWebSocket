@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Khand:wght@600&family=M+PLUS+Rounded+1c:wght@300;400;500;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rampart+One&family=Khand:wght@600&family=M+PLUS+Rounded+1c:wght@300;400;500;700;800;900&display=swap');
 
 body {
     color: #bb5252;
     background: #f7ede2;
     font-family: 'M PLUS Rounded 1c', sans-serif;
 }
-
 
 .imgWrapper {
     text-align: center;;
@@ -14,7 +13,52 @@ img {
     max-width: 350px;
     height: auto;
 }
+/* Start Page */
+.startPageWrapper {
+    color: #853a3a;
+    cursor: pointer;
+    font-size: 10vw;
+    font-family: 'Rampart One';
+    font-weight: 900;
+    text-align: center;
+}
+.startBtn {
+    width: 445px;
+    color: white;
+    font-size: 12vw;
+    font-family: 'M PLUS Rounded 1c';
+    font-weight: 800;
+    margin-top: 35px;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    background: #f28482;
+    border-radius: 12px;
+    outline-offset: 4px;
+}
+.startBtn .btnTxt {
+    font-size: 65px;
+    width: 350px;
+}
+.startBtn:hover .btnTxt {
+    color: white;
+    background: #e888889c;
+}
+.startBtn:active .btnTxt {
+    transform: translateY(-2px) translateX(-2px);
+}
 
+
+/* Quiz Page */
+.quizWrapper {
+    transition: all 1s ease-out;
+}
+.hide {
+    top: -200%;
+}
+.show {
+    top: 0%;
+}
 .header {
     height: 60px;
     margin: 0px 25px;
@@ -24,7 +68,6 @@ img {
     align-items: center;
     justify-content: space-between;
 }
-
 #countdown {
     width: 50px;
     color: white;
@@ -77,6 +120,7 @@ img {
     color: white;
     background: #959595;
     transform: translateY(0px) translateX(0px);
+    pointer-events: none;
 }
 .answerBtn.clicked .btnTxt {
     background: #e888889c;
@@ -114,16 +158,35 @@ img {
     font-weight: 600;
     font-family: 'M PLUS Rounded 1c', sans-serif;
 }
+
+/* 対象以外のページ */
 .notAvailable {
     opacity: 0;
-    font-size: 50px;
+    font-size: 7vw;
     text-align: center;
     font-weight: 800;
+    margin-top: 150px;
 }
 .emoji {
     color: white;
     text-shadow: 0px 0px 3px black;
 }
+.back {
+    color: #5c5c5c;
+    width: 170px;
+    border: solid;
+    margin: 10px auto;
+    cursor: pointer;
+    font-size: 70px;
+    align-items: center;
+    border-radius: 50%;
+    background: white;
+}
+.back:hover {
+    background: #5c5c5c;
+    color: white;
+}
+
 
 pre {
     color: black;
@@ -164,8 +227,14 @@ samp > kbd {
     .questionTxt {
         font-size: 15px;
     }
-    
     .btnTxt,.quizResult {
         font-size: 14px;
+    }
+    .startBtn {
+        width: 290px;
+    }
+    .startBtn .btnTxt {
+        width: 200px;
+        font-size: 40px;
     }
 }

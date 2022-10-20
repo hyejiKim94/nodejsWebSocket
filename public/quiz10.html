@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/css/style.css">
     <title>Websocket Chatting</title>
-    <script type="text/javascript" src="/static/js/main.js"> </script>
   </head>
   <body>
     <div class="quizWrapper">
@@ -25,9 +24,10 @@
               <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><span class="btnTxt">Jira Work Management<br /><span class="quizResult"></span></span></button>
           </div>
       </div>
-  </div>
-  <div class="notAvailable">
-    今は利用不可能です<span class="emoji">٩( ᐛ )و</span>
-  </div>
+    </div>
+    <div class="notAvailable">
+      今は利用不可能です<span class="emoji">٩( ᐛ )و</span><br /><div class="back" onclick="location.href='/start'">←</div>
+    </div>
+    <script type="text/javascript" src="/static/js/main.js"> </script>
   </body>
 </html>

@@ -28,8 +28,9 @@
         <button class="adminControl" value="result" onclick="doSome(this.value)">結果集計</button>
     </div>
     <div class="menuRow">
-        <button class="adminControl" value="showQuiz" onclick="doSome(this.value)">問題表示</button>
-        <button class="adminControl" value="sessionClear" onclick="doSome(this.value)">SessionClear</button>
+        <button class="adminControl" value="show" onclick="doSome(this.value)">問題表示</button>
+        <button class="adminControl" value="init" onclick="doSome(this.value)">初期化</span></button>
+        <!-- <button class="adminControl" value="sessionClear" onclick="doSome(this.value)" style="pointer-events: none; background: gray;">SessionClear</button> -->
     </div>
     <script>
         // const ws = new WebSocket("ws://localhost:3001")
@@ -64,9 +65,18 @@
                 case 'result':
                     ws.send('admin::result');
                     break;
-                case 'sessionClear':
-                    ws.send('admin::sessionClear');
+                case 'show':
+                    ws.send('admin::show');
                     break;
+                case 'init':
+                    ws.send('admin::init');
+                    break;
+                case 'sessionClear':
+                    const confirmed = confirm('sessionをクリアしますか。')
+                    if(confirmed) {
+                        ws.send('admin::sessionClear');
+                        break;
+                    }
             }
         }
     </script>

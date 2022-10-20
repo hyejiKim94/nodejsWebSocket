@@ -6,6 +6,8 @@ const app = express()
 const port = process.env.PORT || 3000
 const wssPort = process.env.WSS_PORT || 3001
 
+// quiz started;
+let quizStarted = false;
 // User Sequence
 let seq = 0
 // User List
@@ -53,17 +55,22 @@ app.get('/page/:num', (req, res) => {
 
 wss.broadcast = (message) => {
     wss.clients.forEach((client) => {
-        client.send(message);
+        // TODO: performace test
+        // for(let i = 0; i < 50; i ++) {
+            // console.log(`msg send${i}`);
+            client.send(message);
+        // }
     })
 }
 
 
 wss.on("connection", (ws, request) => {
     seq++;
+    console.log(`how many people in here :${seq}`)
     wss.clients.forEach(client => {
         // client.send(`how many users?? ${wss.clients.size}`)
         client.send(`session::user${seq}`)
-        client.send(`currentPage::${pageNum}`);
+        client.send(`currentPage::${pageNum}::${quizStarted}`);
     });
     ws.on('message', data => {
         const msgArr = data.toString().split("::");
@@ -112,6 +119,16 @@ wss.on("connection", (ws, request) => {
                     break;
                 case 'result':
                     getResult();
+                    break;
+                case 'show':
+                    quizStarted = true;
+                    wss.broadcast('control::show');
+                    break;
+                case 'init':
+                    quizStarted = false;
+                    pageNum = 1;
+                    userList.clear();
+                    answerList = []
                     break;
                 case 'sessionClear':
                     seq = 0;
