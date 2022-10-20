@@ -36,8 +36,7 @@ app.get('/admin', (_, res) => {
 
 app.get('/start', (_, res) => {
     console.log(`start from quiz${pageNum}.html`);
-    res.setHeader('Cache-Control', 'no-cache');
-    res.sendFile(`quiz${pageNum}.html`, { root: dirName });
+    res.redirect(`/page/${pageNum}`);
 })
 
 app.get('/page/:num', (req, res) => {
