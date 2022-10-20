@@ -37,7 +37,9 @@ app.get('/admin', (_, res) => {
 })
 
 app.get('/start', (_, res) => {
-    console.log(`start from quiz${pageNum}.html`);
+    seq++;
+    console.log(`person ${seq}`)
+    // console.log(`start from quiz${pageNum}.html`);
     res.redirect(`/page/${pageNum}`);
 })
 
@@ -65,13 +67,14 @@ wss.broadcast = (message) => {
 
 
 wss.on("connection", (ws, request) => {
-    seq++;
-    console.log(`how many people in here :${seq}`)
-    wss.clients.forEach(client => {
-        // client.send(`how many users?? ${wss.clients.size}`)
-        client.send(`session::user${seq}`)
-        client.send(`currentPage::${pageNum}::${quizStarted}`);
-    });
+    console.log(`how many people in here :${seq}`);
+    wss.broadcast(`currentPage::${pageNum}::${quizStarted}`);
+    wss.broadcast(`session::user${seq}`);
+    // wss.clients.forEach(client => {
+    //     // client.send(`how many users?? ${wss.clients.size}`)
+    //     client.send(``)
+    //     client.send(``);
+    // });
     ws.on('message', data => {
         const msgArr = data.toString().split("::");
         const cmdType = msgArr[0];
@@ -89,7 +92,6 @@ wss.on("connection", (ws, request) => {
                     if (pageNum == 1) {
                         wss.broadcast('adminError::noPrevPage');
                     } else {
-                        seq = 0;
                         userList.clear();
                         answerList = [];
                         --pageNum;
@@ -100,7 +102,6 @@ wss.on("connection", (ws, request) => {
                     if (pageNum == 10) {
                         wss.broadcast('adminError::noNextPage');
                     } else {
-                        seq = 0;
                         userList.clear();
                         answerList = [];
                         ++pageNum;
