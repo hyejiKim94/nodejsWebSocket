@@ -1,4 +1,4 @@
-const ws = new WebSocket("ws://18.183.77.192:3001")
+const ws = new WebSocket("ws://18.181.8.214:3001")
 // const ws = new WebSocket("ws://localhost:3001");
 
 const answerEls = document.getElementsByClassName('answerBtn');
@@ -41,9 +41,7 @@ const interfaceControl = (controlType) => {
             }, 1000);
             break;
         case 'show':
-            document.getElementsByClassName('quizWrapper')[0].classList.remove('hide');
-            document.getElementsByClassName('quizWrapper')[0].classList.add('show');
-            //    document.getElementsByClassName('quizWrapper')[0].setAttribute('style', 'opacity: 1;');
+            document.getElementsByClassName('quizWrapper')[0].setAttribute('style', 'opacity: 1;');
             break;
 
     }
@@ -54,10 +52,11 @@ const showResult = (answerNum, resultData) => {
     // const displayEl = document.getElementsByClassName('quizResult');
     for (let i = 0; i < resultEls.length; i++) {
         resultEls[i].innerHTML = resultDataArr[i];
-        if (Number(answerNum) === i + 1) {
-            resultEls[i].parentElement.classList.add('right');
+        if (Number(answerNum) === Number(answerEls[i].getAttribute('value'))) {
+            answerEls[i].classList.add('right');
         } else {
-            resultEls[i].parentElement.classList.add('wrong');
+            answerEls[i].classList.add('wrong');
+            // resultEls[i].parentElement.classList.add('wrong');
         }
     }
 }
@@ -67,12 +66,8 @@ ws.onmessage = (data) => {
     const cmdType = dataArr[0];
     if (cmdType === 'currentPage') {
         if(Number(dataArr[1]) === 1) {
-            console.log(`check display, quizs started? ${dataArr[2]}`);
             if(dataArr[2] == 'true') {
-                console.log('turue')
-                document.getElementsByClassName('quizWrapper')[0].classList.remove('hide');
-                document.getElementsByClassName('quizWrapper')[0].classList.add('show');
-                // document.getElementsByClassName('quizWrapper')[0].setAttribute('style', 'opacity: 1;');
+                document.getElementsByClassName('quizWrapper')[0].setAttribute('style', 'opacity: 1;');
             }
         }
         const openedPage = document.getElementById('curPage');

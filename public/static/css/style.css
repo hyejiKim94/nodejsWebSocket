@@ -51,10 +51,10 @@ img {
 
 /* Quiz Page */
 .quizWrapper {
-    transition: all 1s ease-out;
+    transition: all 0.5s ease-out;
 }
 .hide {
-    top: -200%;
+    top: -400%;
 }
 .show {
     top: 0%;
@@ -66,7 +66,7 @@ img {
     font-size: 35px;
     font-weight: 900;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 #countdown {
     width: 50px;
@@ -90,28 +90,28 @@ img {
     border-radius: 15px;
     letter-spacing: -1px;
     background-color: white;
+    text-align: center;
 }
 
-.answerBtnWrapper{
-    display: flex;
-}
 .btnRow {
-    width: 50%;
+    display: flex;
     text-align: center;
 }
 .answerBtn {
+    display: flex;
     width: 90%;
     margin: 10px;
     cursor: pointer;
     border: none;
-    padding: 0;
-    background: #f28482;
-    border-radius: 12px;
-    outline-offset: 4px;
+    background: #f5cac4;
+    align-items: center;
+}
+.answerBtn:hover {
+    background: #bb5252;
 }
 .answerBtn:hover .btnTxt {
     color: white;
-    background: #e888889c;
+    background: #bb5252;
 }
 .answerBtn:active .btnTxt {
     transform: translateY(-2px) translateX(-2px);
@@ -122,31 +122,33 @@ img {
     transform: translateY(0px) translateX(0px);
     pointer-events: none;
 }
-.answerBtn.clicked .btnTxt {
-    background: #e888889c;
-    box-shadow: 0px 0px 8px #9d9d9d;
+.answerBtn.clicked {
+    background: #bb5252;
 }
-
+.answerBtn.clicked .btnTxt {
+    background: #bb5252;
+} 
+.answerNum {
+    color: gray;
+}
 .btnTxt {
     color: #bb5252;
     padding: 12px 42px;
-    display: flex;
+    /* display: flex; */
     font-size: 28px;
     font-family: 'M PLUS Rounded 1c';
     font-weight: 800;
     text-align: center;
-    background: #f5cac3;
     align-items: center;
-    border-radius: 12px;
     flex-direction: column;
-    transform: translateY(-6px) translateX(-4px);
+    width: inherit;
 }
-.btnTxt.right {
+.answerBtn.right {
     border-style: dashed;
     border-width: 4px;
     border-color: red;
 }
-.btnTxt.wrong {
+.answerBtn.wrong {
     border-style: dashed;
     border-width: 4px;
     border-color: #ffffff00;

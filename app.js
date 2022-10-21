@@ -3,7 +3,7 @@ const { WebSocketServer } = require("ws");
 require('dotenv').config();
 
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8080
 const wssPort = process.env.WSS_PORT || 3001
 
 // quiz started;
@@ -32,7 +32,7 @@ app.get('/adminLogin', (_, res) => {
     res.sendFile('adminLogin.html', { root: dirName })
 })
 
-app.get('/admin', (_, res) => {
+app.get('/quizgame/2022/admin', (_, res) => {
     res.sendFile('admin.html', { root: dirName });
 })
 
@@ -192,6 +192,7 @@ function getResult() {
     console.log(`Percentage : 1 - ${roundingOff(answer1)}% | 2 - ${roundingOff(answer2)}% | 3 - ${roundingOff(answer3)}% | 4 - ${roundingOff(answer4)}%`)
     console.log(`Answer Count : ${answerList.size}`)
     const resultArr = [roundingOff(answer1), roundingOff(answer2), roundingOff(answer3), roundingOff(answer4)]
+    console.log(`CurPage is ${pageNum} Answer is ${answerArr[pageNum - 1]}`);
     wss.broadcast(`result::${answerArr[pageNum - 1]}::${answer1}人[${resultArr[0]}%],${answer2}人[${resultArr[1]}%],${answer3}人[${resultArr[2]}%],${answer4}人[${resultArr[3]}%]`)
 
 }

@@ -7,37 +7,21 @@
     <title>Websocket Chatting</title>
   </head>
   <body>
-    <div class="quizWrapper hide" style="position: absolute;">
-    <!-- <div class="quizWrapper" style="opacity: 0;"> 透明度調整：ボタンの周りにcursorが見えるpointer-eventsで処理可能 -->
+    <div class="quizWrapper hide" style="opacity: 0;">
         <div>
             <span id="userCnt"></span>
         </div>
         <input type="hidden" id="curPage" value="1">
         <div class="header">Quiz Number 1<span id="countdown"></span></div>
-        <div class="questionTxt">メモ作成、プロジェクト管理、タスク管理のためのオールインワンワークスペースで、マークダウンサポートを備えた2022年度一番人気があったメモメモアプリケーションは？
-            <!-- image Sample -->
-            <div class="imgWrapper">
-                <img alt="quizImage" src="https://www.pngitem.com/pimgs/m/19-199505_rust-programming-language-logo-hd-png-download.png">
-            </div>
-            <!-- code Sample -->
-            <pre>
-                <code>
-    function Panel(element, canClose, closeHandler) {
-        this.element = element;
-        this.canClose = canClose;
-        this.closeHandler = function () { if (closeHandler) closeHandler() };
-    }
-                </code>
-            </pre>
-        </div>
+        <div class="questionTxt">"swift（スイフト・スウィフト）" の説明として<br/>「正しいもの」を以下から選択してください。</div>
         <div class="answerBtnWrapper">
             <div class="btnRow">
-                <button class="answerBtn" value="1" onclick="answerBtn(this.value)"><span class="btnTxt">Trello<br /><span class="quizResult"></span></button>
-                <button class="answerBtn" value="2" onclick="answerBtn(this.value)"><span class="btnTxt">Notion<br /><span class="quizResult"></span></span></button>
+                    <button class="answerBtn" value="1" onclick="answerBtn(this.value)"><div class="btnTxt"><span class="answerNum">A:</span>iOS、Mac、Apple TV、Apple Watch、Windows向けのアプリを開発するためにNetscape社が作ったプログラミング言語<br /><span class="quizResult"></span></div></button>
+                    <button class="answerBtn" value="2" onclick="answerBtn(this.value)"><div class="btnTxt"><span class="answerNum">B:</span>SUZUKIが製造販売するワンボックス・カー<br /><span class="quizResult"></span></div></button>
             </div>
             <div class="btnRow">
-                <button class="answerBtn" value="3" onclick="answerBtn(this.value)"><span class="btnTxt">NotePM<br /><span class="quizResult"></span></span></button>
-                <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><span class="btnTxt">Jira Work Management<br /><span class="quizResult"></span></span></button>
+                    <button class="answerBtn" value="3" onclick="answerBtn(this.value)"><div class="btnTxt"><span class="answerNum">C:</span>銀行間の国際金融取引に関するネットワークシステム<br /><span class="quizResult"></span></div></button>
+                    <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><div class="btnTxt"><span class="answerNum">D:</span>ソフトウェアにおける第三者検証・品質保証サービス・テストを専門とするIT企業<br /><span class="quizResult"></span></div></button>
             </div>
         </div>
     </div>
