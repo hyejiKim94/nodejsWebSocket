@@ -12,16 +12,20 @@
           <span id="userCnt"></span>
       </div>
       <input type="hidden" id="curPage" value="8">
-      <div class="header">Quiz Number 8<span id="countdown"></span></div>
+      <div class="header">
+        <img alt="logo" src="/static/img/logo.png" class="logo">
+        <img alt="character" src="/static/img/shimoda_ kazuyoshi.png" class="character" id="shimoda">
+      </div>
+      <div id="countdown" style="opacity: 0;">10</div>
       <div class="questionTxt">以下のうちKubernetesと関係ないものはどれ？</div>
       <div class="answerBtnWrapper">
           <div class="btnRow">
-              <button class="answerBtn" value="1" onclick="answerBtn(this.value)"><span class="answerNum">A:</span><span class="btnTxt">k9s<br /><span class="quizResult"></span></button>
-              <button class="answerBtn" value="2" onclick="answerBtn(this.value)"><span class="answerNum">B:</span><span class="btnTxt">k4s<br /><span class="quizResult"></span></span></button>
+              <button class="answerBtn" value="1" onclick="answerBtn(this.value)"><span class="answerNum">A:</span><span class="btnTxt">k9s<span class="quizResult"></span></button>
+              <button class="answerBtn" value="2" onclick="answerBtn(this.value)"><span class="answerNum">B:</span><span class="btnTxt">k4s<span class="quizResult"></span></span></button>
           </div>
           <div class="btnRow">
-              <button class="answerBtn" value="3" onclick="answerBtn(this.value)"><span class="answerNum">C:</span><span class="btnTxt">k3s<br /><span class="quizResult"></span></span></button>
-              <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><span class="answerNum">D:</span><span class="btnTxt">k0s<br /><span class="quizResult"></span></span></button>
+              <button class="answerBtn" value="3" onclick="answerBtn(this.value)"><span class="answerNum">C:</span><span class="btnTxt">k3s<span class="quizResult"></span></span></button>
+              <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><span class="answerNum">D:</span><span class="btnTxt">k0s<span class="quizResult"></span></span></button>
           </div>
       </div>
     </div>

@@ -9,20 +9,24 @@
   <body>
     <div class="quizWrapper">
       <div>
-          <span id="userCnt"></span>
+        <span id="userCnt"></span>
       </div>
       <input type="hidden" id="curPage" value="2">
-      <div class="header">Quiz Number 2<span id="countdown"></span></div>
+      <div class="header">
+        <img alt="logo" src="/static/img/logo.png" class="logo">
+        <img alt="character" src="/static/img/goto_takeshi.png" class="character" id="goto">
+      </div>
+      <div id="countdown" style="opacity: 0;">10</div>
       <div class="questionTxt">メガ(10^6)、ギガ(10^9)、テラ(10^12)、ペタ(10^15)、と続いたら、<br />次の「10^18」は、</div>
       <div class="answerBtnWrapper">
-          <div class="btnRow">
-              <button class="answerBtn" value="1" onclick="answerBtn(this.value)"><span class="answerNum">A:</span><span class="btnTxt">エクサ<br /><span class="quizResult"></span></button>
-              <button class="answerBtn" value="2" onclick="answerBtn(this.value)"><span class="answerNum">B:</span><span class="btnTxt">ヘキサ<br /><span class="quizResult"></span></span></button>
-          </div>
-          <div class="btnRow">
-              <button class="answerBtn" value="3" onclick="answerBtn(this.value)"><span class="answerNum">C:</span><span class="btnTxt">ゼタ<br /><span class="quizResult"></span></span></button>
-              <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><span class="answerNum">D:</span><span class="btnTxt">ヨタ<br /><span class="quizResult"></span></span></button>
-          </div>
+        <div class="btnRow">
+          <button class="answerBtn" value="1" onclick="answerBtn(this.value)"><span class="answerNum">A:</span><span class="btnTxt">エクサ<span class="quizResult"></span></button>
+          <button class="answerBtn" value="2" onclick="answerBtn(this.value)"><span class="answerNum">B:</span><span class="btnTxt">ヘキサ<span class="quizResult"></span></span></button>
+        </div>
+        <div class="btnRow">
+          <button class="answerBtn" value="3" onclick="answerBtn(this.value)"><span class="answerNum">C:</span><span class="btnTxt">ゼタ<span class="quizResult"></span></span></button>
+          <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><span class="answerNum">D:</span><span class="btnTxt">ヨタ<span class="quizResult"></span></span></button>
+        </div>
       </div>
     </div>
     <div class="notAvailable">

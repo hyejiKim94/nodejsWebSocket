@@ -51,7 +51,8 @@ const showResult = (answerNum, resultData) => {
     const resultDataArr = String(resultData).split(',');
     // const displayEl = document.getElementsByClassName('quizResult');
     for (let i = 0; i < resultEls.length; i++) {
-        resultEls[i].innerHTML = resultDataArr[i];
+        resultEls[i].innerHTML = `<br />${resultDataArr[i]}`;
+        console.log(`answer is ${Number(answerNum)}`)
         if (Number(answerNum) === Number(answerEls[i].getAttribute('value'))) {
             answerEls[i].classList.add('right');
         } else {
@@ -73,7 +74,7 @@ ws.onmessage = (data) => {
         const openedPage = document.getElementById('curPage');
         if (openedPage && Number(dataArr[1]) !== Number(openedPage.getAttribute('value'))) {
             document.getElementsByClassName('quizWrapper')[0].remove();
-            document.getElementsByClassName('notAvailable')[0].setAttribute('style', 'opacity: 1');
+            document.getElementsByClassName('notAvailable')[0].setAttribute('style', 'display: block');
         }
     }
     if (cmdType === 'page') {

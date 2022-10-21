@@ -12,16 +12,20 @@
           <span id="userCnt"></span>
       </div>
       <input type="hidden" id="curPage" value="6">
-      <div class="header">Quiz Number 6<span id="countdown"></span></div>
+      <div class="header">
+        <img alt="logo" src="/static/img/logo.png" class="logo">
+        <img alt="character" src="/static/img/ogata_satoshi.png" class="character" id="ogata">
+      </div>
+      <div id="countdown" style="opacity: 0;">10</div>
       <div class="questionTxt">2022年現在、最も使われている8 ビットマイコンは 8085、PIC、あとひとつは？</div>
       <div class="answerBtnWrapper">
           <div class="btnRow">
-              <button class="answerBtn" value="1" onclick="answerBtn(this.value)"><span class="answerNum">A:</span><span class="btnTxt">ARM<br /><span class="quizResult"></span></button>
-              <button class="answerBtn" value="2" onclick="answerBtn(this.value)"><span class="answerNum">B:</span><span class="btnTxt">AVR<br /><span class="quizResult"></span></span></button>
+              <button class="answerBtn" value="1" onclick="answerBtn(this.value)"><span class="answerNum">A:</span><span class="btnTxt">ARM<span class="quizResult"></span></button>
+              <button class="answerBtn" value="2" onclick="answerBtn(this.value)"><span class="answerNum">B:</span><span class="btnTxt">AVR<span class="quizResult"></span></span></button>
           </div>
           <div class="btnRow">
-              <button class="answerBtn" value="3" onclick="answerBtn(this.value)"><span class="answerNum">C:</span><span class="btnTxt">FPGA<br /><span class="quizResult"></span></span></button>
-              <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><span class="answerNum">D:</span><span class="btnTxt">RISC<br /><span class="quizResult"></span></span></button>
+              <button class="answerBtn" value="3" onclick="answerBtn(this.value)"><span class="answerNum">C:</span><span class="btnTxt">FPGA<span class="quizResult"></span></span></button>
+              <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><span class="answerNum">D:</span><span class="btnTxt">RISC<span class="quizResult"></span></span></button>
           </div>
       </div>
     </div>

@@ -1,17 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Rampart+One&family=Khand:wght@600&family=M+PLUS+Rounded+1c:wght@300;400;500;700;800;900&display=swap');
 
 body {
-    color: #bb5252;
-    background: #f7ede2;
+    color: white;
+    background: #1d1660;
     font-family: 'M PLUS Rounded 1c', sans-serif;
 }
-
-.imgWrapper {
-    text-align: center;;
-}
-img {
-    max-width: 350px;
+.logo {
+    width: 80%;
     height: auto;
+}
+.character {
+    /* width: 20%; */
+    position: absolute;
+    right: -2%;
+}
+#goto {
+    width: 26%;
+    bottom: -35%;
+}
+#hiraoka {
+    width: 22%;
+    bottom: -32%;
+}
+#ogata {
+    width: 17%;
+    bottom: -35%;
+}
+#shimoda {
+    width: 25%;
+    bottom: -35%;
 }
 /* Start Page */
 .startPageWrapper {
@@ -60,36 +77,30 @@ img {
     top: 0%;
 }
 .header {
-    height: 60px;
-    margin: 0px 25px;
+    margin: 35px 25px 0px 25px;
     display: flex;
     font-size: 35px;
     font-weight: 900;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
+    position: relative;
 }
 #countdown {
-    width: 50px;
-    color: white;
-    padding: 5px;
-    text-align: center;
-    background: #ffa1a2;
-    box-shadow: 2px 2px 3px #515151;
-    text-shadow: 0px 0px 15px white;
+    color: red;
+    font-size: 45px;
     font-weight: 800;
-    border-radius: 50%;
-    opacity: 0;
+    text-align: center;
 }
 
 .questionTxt {
-    border: solid 3px #e88888;
+    border: solid 5px #9bc3e4;
     margin: 10px 20px;
     padding: 5px 10px;
     font-size: 30px;
     font-weight: 500;
     border-radius: 15px;
     letter-spacing: -1px;
-    background-color: white;
+    background-color: #3a3938;
     text-align: center;
 }
 
@@ -100,22 +111,24 @@ img {
 .answerBtn {
     display: flex;
     width: 90%;
-    margin: 10px;
+    margin: 10px 20px;
     cursor: pointer;
-    border: none;
-    background: #f5cac4;
+    border: solid 5px #9cc3e6;
+    background: #3a3938;
     align-items: center;
+    border-radius: 15px;
 }
 .answerBtn:disabled {
     background: #959595;
     pointer-events: none;
 }
 .answerBtn:hover {
-    background: #bb5252;
+    color: black;
+    background: #ffc100;
 }
 .answerBtn:hover .btnTxt {
-    color: white;
-    background: #bb5252;
+    color: black;
+    background: #ffc100;
 }
 .answerBtn:disabled .btnTxt {
     color: white;
@@ -124,10 +137,12 @@ img {
     pointer-events: none;
 }
 .answerBtn.clicked {
-    background: #bb5252;
+    color: black;
+    background: #ffc100;
 }
 .answerBtn.clicked .btnTxt {
-    background: #bb5252;
+    color: black;
+    background: #ffc100;
 } 
 .answerNum {
     font-size: 35px;
@@ -137,12 +152,12 @@ img {
     margin-left: 10px;
 }
 .btnTxt {
-    color: #bb5252;
+    color: white;
     padding: 12px 10px;
     /* display: flex; */
     font-size: 28px;
     font-family: 'M PLUS Rounded 1c';
-    font-weight: 800;
+    font-weight: 600;
     text-align: center;
     align-items: center;
     flex-direction: column;
@@ -169,7 +184,7 @@ img {
 
 /* 対象以外のページ */
 .notAvailable {
-    opacity: 0;
+    display: none;
     font-size: 7vw;
     text-align: center;
     font-weight: 800;
@@ -206,37 +221,30 @@ pre {
     /* word-break: break-all; 텍스트가 넘칠경우 줄바꿈을 해준다 */
     white-space: pre-wrap; /* 공백이나 탭공간을 그대로 둔다 */
 }
-/* 
-.prompt {
-    color: #b00;
-}
-  
-samp > kbd {
-    font-weight: bold;
-}
-
-.cursor {
-    color: #00b;
-} */
 
 @media screen and (min-width: 300px) and (max-width: 500px){
     body {
         font-size: 15px;
     }
-    img {
-        max-width: 250px;
-    }
     .header {
         font-size: 25px;
     }
     #countdown {
-        width: 35px;
+        font-size: 25px;
     }
     .questionTxt {
         font-size: 15px;
+        margin: 5px;
     }
     .btnTxt,.quizResult {
         font-size: 14px;
+        padding: 2px;
+    }
+    .answerBtn {
+        margin: 5px;
+    }
+    .answerNum {
+        font-size: 15px;
     }
     .startBtn {
         width: 290px;
@@ -244,5 +252,24 @@ samp > kbd {
     .startBtn .btnTxt {
         width: 200px;
         font-size: 40px;
+    }
+    #goto {
+        width: 30%;
+        bottom: -35%;
+        right: -6%;
+    }
+    #hiraoka {
+        bottom: -50%;
+        width: 24%;
+        right: -3%;
+    }
+    #ogata {
+        bottom: -55px;
+        width: 23%;
+    }
+    #shimoda {
+        width: 27%;
+        bottom: -43%;
+        right: -5%;
     }
 }

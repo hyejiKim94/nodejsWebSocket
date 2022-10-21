@@ -12,16 +12,20 @@
           <span id="userCnt"></span>
       </div>
       <input type="hidden" id="curPage" value="5">
-      <div class="header">Quiz Number 5<span id="countdown"></span></div>
+      <div class="header">
+        <img alt="logo" src="/static/img/logo.png" class="logo">
+        <img alt="character" src="/static/img/ogata_satoshi.png" class="character" id="ogata">
+      </div>
+      <div id="countdown" style="opacity: 0;">10</div>
       <div class="questionTxt">Java は 1.0 がリリースされる前は別の名前でした。その名前は？</div>
       <div class="answerBtnWrapper">
           <div class="btnRow">
-              <button class="answerBtn" value="1" onclick="answerBtn(this.value)"><span class="answerNum">A:</span><span class="btnTxt">Green<br /><span class="quizResult"></span></button>
-              <button class="answerBtn" value="2" onclick="answerBtn(this.value)"><span class="answerNum">B:</span><span class="btnTxt">C--<br /><span class="quizResult"></span></span></button>
+              <button class="answerBtn" value="1" onclick="answerBtn(this.value)"><span class="answerNum">A:</span><span class="btnTxt">Green<span class="quizResult"></span></button>
+              <button class="answerBtn" value="2" onclick="answerBtn(this.value)"><span class="answerNum">B:</span><span class="btnTxt">C--<span class="quizResult"></span></span></button>
           </div>
           <div class="btnRow">
-              <button class="answerBtn" value="3" onclick="answerBtn(this.value)"><span class="answerNum">C:</span><span class="btnTxt">Oak<br /><span class="quizResult"></span></span></button>
-              <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><span class="answerNum">D:</span><span class="btnTxt">Duke<br /><span class="quizResult"></span></span></button>
+              <button class="answerBtn" value="3" onclick="answerBtn(this.value)"><span class="answerNum">C:</span><span class="btnTxt">Oak<span class="quizResult"></span></span></button>
+              <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><span class="answerNum">D:</span><span class="btnTxt">Duke<span class="quizResult"></span></span></button>
           </div>
       </div>
     </div>
