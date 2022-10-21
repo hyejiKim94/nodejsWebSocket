@@ -32,7 +32,6 @@ body {
 }
 /* Start Page */
 .startPageWrapper {
-    color: #853a3a;
     cursor: pointer;
     font-size: 10vw;
     font-family: 'Rampart One';
@@ -40,29 +39,25 @@ body {
     text-align: center;
 }
 .startBtn {
-    width: 445px;
-    color: white;
-    font-size: 12vw;
-    font-family: 'M PLUS Rounded 1c';
-    font-weight: 800;
-    margin-top: 35px;
+    display: flex;
+    width: 90%;
+    margin: 10px 20px;
     cursor: pointer;
-    border: none;
-    padding: 0;
-    background: #f28482;
-    border-radius: 12px;
-    outline-offset: 4px;
+    border: solid 5px #9cc3e6;
+    background: #3a3938;
+    align-items: center;
+    border-radius: 15px;
+    justify-self: center;
+}
+.startBtn:hover {
+    background: #ffc002;
 }
 .startBtn .btnTxt {
-    font-size: 65px;
-    width: 350px;
+    text-align: center;
 }
 .startBtn:hover .btnTxt {
     color: white;
-    background: #e888889c;
-}
-.startBtn:active .btnTxt {
-    transform: translateY(-2px) translateX(-2px);
+    background: #ffc100;
 }
 
 
