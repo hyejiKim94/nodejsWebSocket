@@ -106,15 +106,16 @@ img {
     background: #f5cac4;
     align-items: center;
 }
+.answerBtn:disabled {
+    background: #959595;
+    pointer-events: none;
+}
 .answerBtn:hover {
     background: #bb5252;
 }
 .answerBtn:hover .btnTxt {
     color: white;
     background: #bb5252;
-}
-.answerBtn:active .btnTxt {
-    transform: translateY(-2px) translateX(-2px);
 }
 .answerBtn:disabled .btnTxt {
     color: white;
@@ -129,11 +130,15 @@ img {
     background: #bb5252;
 } 
 .answerNum {
+    font-size: 35px;
+    font-family: 'M PLUS Rounded 1c';
+    font-weight: 800;
     color: gray;
+    margin-left: 10px;
 }
 .btnTxt {
     color: #bb5252;
-    padding: 12px 42px;
+    padding: 12px 10px;
     /* display: flex; */
     font-size: 28px;
     font-family: 'M PLUS Rounded 1c';
@@ -142,6 +147,7 @@ img {
     align-items: center;
     flex-direction: column;
     width: inherit;
+    text-align: initial;
 }
 .answerBtn.right {
     border-style: dashed;
