@@ -10,7 +10,6 @@ const interfaceControl = (controlType) => {
         case 'lock':
             for(let i = 0; i < answerEls.length; i++) {
                 answerEls[i].setAttribute('disabled', 'disabled');
-                answerEls[i].removeAttribute('value');
                 answerEls[i].removeAttribute('onclick');
             }
             break;
@@ -50,9 +49,9 @@ const interfaceControl = (controlType) => {
 const showResult = (answerNum, resultData) => {
     const resultDataArr = String(resultData).split(',');
     // const displayEl = document.getElementsByClassName('quizResult');
+    console.log(`answer is ${Number(answerNum)}`)
     for (let i = 0; i < resultEls.length; i++) {
         resultEls[i].innerHTML = `<br />${resultDataArr[i]}`;
-        console.log(`answer is ${Number(answerNum)}`)
         if (Number(answerNum) === Number(answerEls[i].getAttribute('value'))) {
             console.log('should be printed at least one time');
             answerEls[i].classList.add('right');
