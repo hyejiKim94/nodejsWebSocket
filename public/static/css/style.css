@@ -9,10 +9,41 @@ body {
     width: 80%;
     height: auto;
 }
+.warningWrapper {
+    width: 100%;
+}
+.warning {
+    width: 400px;
+    border: solid 5px white;
+    margin: 60px auto;
+    padding: 35px 30px;
+    font-size: 22px;
+    text-align: center;
+    background: black;
+}
+.chaWrapper {
+    display: flex;
+    justify-content: center;
+}
 .character {
     /* width: 20%; */
     position: absolute;
     right: -2%;
+}
+.chaWrapper #goto {
+    width: 40%;
+}
+.chaWrapper #hiraoka {
+    width: 30%;
+}
+.chaWrapper #ogata {
+    width: 20%;
+}
+.chaWrapper #shimoda {
+    width: 32%;
+}
+.chaWrapper #kuzukawa {
+    width: 30%;
 }
 #goto {
     width: 26%;
@@ -30,6 +61,10 @@ body {
     width: 25%;
     bottom: -35%;
 }
+#kuzukawa {
+    width: 25%;
+    bottom: -30%;
+}
 /* Start Page */
 .startPageWrapper {
     cursor: pointer;
@@ -40,8 +75,8 @@ body {
 }
 .startBtn {
     display: flex;
-    width: 90%;
-    margin: 10px 20px;
+    width: 75%;
+    margin: 10px auto;
     cursor: pointer;
     border: solid 5px #9cc3e6;
     background: #3a3938;
@@ -53,7 +88,9 @@ body {
     background: #ffc002;
 }
 .startBtn .btnTxt {
+    font-size: 40px;
     text-align: center;
+    width: 100%;
 }
 .startBtn:hover .btnTxt {
     color: white;
@@ -100,6 +137,10 @@ body {
 }
 
 .btnRow {
+    display: flex;
+    text-align: center;
+}
+.imgBtnRow {
     display: flex;
     text-align: center;
 }
@@ -159,9 +200,13 @@ body {
     width: inherit;
     text-align: initial;
 }
+.btnImg {
+    justify-content: center;
+    width: 100%;
+}
 .answerBtn.right {
     border-style: dashed;
-    border-width: 4px;
+    border-width: 10px;
     border-color: red;
 }
 .answerBtn.wrong {
@@ -213,8 +258,12 @@ pre {
     font-size: 15px;
     background: #f2f2f2;
     border-radius: 15px;
-    /* word-break: break-all; 텍스트가 넘칠경우 줄바꿈을 해준다 */
+    word-break: break-all; /* 텍스트가 넘칠경우 줄바꿈을 해준다 */
     white-space: pre-wrap; /* 공백이나 탭공간을 그대로 둔다 */
+}
+code {
+    display: flex;
+    text-align: left;
 }
 
 @media screen and (min-width: 300px) and (max-width: 500px){
@@ -241,12 +290,33 @@ pre {
     .answerNum {
         font-size: 15px;
     }
-    .startBtn {
-        width: 290px;
+    .startBtn .btnTxt{
+        font-size: 40px;
     }
+    /* 
     .startBtn .btnTxt {
         width: 200px;
         font-size: 40px;
+    } */
+    .warning {
+        font-size: 20px;
+        width: 75%;
+        padding: 10px;
+    }
+    .chaWrapper #goto {
+        width: 70%;
+    }
+    .chaWrapper #hiraoka {
+        width: 60%;
+    }
+    .chaWrapper #ogata {
+        width: 50%;
+    }
+    .chaWrapper #shimoda {
+        width: 65%;
+    }
+    .chaWrapper #kuzukawa {
+        width: 70%;
     }
     #goto {
         width: 30%;
@@ -266,5 +336,8 @@ pre {
         width: 27%;
         bottom: -43%;
         right: -5%;
+    }
+    .imgBtnRow {
+        display: block;
     }
 }

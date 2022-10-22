@@ -12,17 +12,20 @@
           <span id="userCnt"></span>
       </div>
       <input type="hidden" id="curPage" value="10">
-      <div class="header">Quiz Number 10</div>
+      <div class="header">
+        <img alt="logo" src="/static/img/logo.png" class="logo">
+        <img alt="character" src="/static/img/kuzukawa_keisuke.png" class="character" id="kuzukawa">
+      </div>
       <div id="countdown" style="opacity: 0;">10</div>
-      <div class="questionTxt">メモ作成、プロジェクト管理、タスク管理のためのオールインワンワークスペースで、マークダウンサポートを備えた2022年度一番人気があったメモメモアプリケーションは？</div>
+      <div class="questionTxt">プログラミング言語、Pythonの作者はどれでしょうか。</div>
       <div class="answerBtnWrapper">
-        <div class="btnRow">
-          <button class="answerBtn" value="1" onclick="answerBtn(this.value)"><span class="answerNum">A:</span><span class="btnTxt">Answer1<span class="quizResult"></span></button>
-          <button class="answerBtn" value="2" onclick="answerBtn(this.value)"><span class="answerNum">B:</span><span class="btnTxt">Answer2<span class="quizResult"></span></span></button>
+        <div class="imgBtnRow">
+          <button class="answerBtn" value="1" onclick="answerBtn(this.value)"><span class="answerNum">A:</span><div class="btnImg"><img alt="111" src="/static/img/image1.png" width="200px"><span class="quizResult"></span></div></button>
+          <button class="answerBtn" value="2" onclick="answerBtn(this.value)"><span class="answerNum">B:</span><div class="btnImg"><img alt="111" src="/static/img/image2.png" width="200px"><span class="quizResult"></span></div></button>
         </div>
-        <div class="btnRow">
-            <button class="answerBtn" value="3" onclick="answerBtn(this.value)"><span class="answerNum">C:</span><span class="btnTxt">Answer3<span class="quizResult"></span></span></button>
-            <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><span class="answerNum">D:</span><span class="btnTxt">Answer4<span class="quizResult"></span></span></button>
+        <div class="imgBtnRow">
+            <button class="answerBtn" value="3" onclick="answerBtn(this.value)"><span class="answerNum">C:</span><div class="btnImg"><img alt="111" src="/static/img/image3.png" width="200px"><span class="quizResult"></span></div></button>
+            <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><span class="answerNum">D:</span><div class="btnImg"><img alt="111" src="/static/img/image4.png" width="200px"><span class="quizResult"></span></div></button>
         </div>
       </div>
     </div>

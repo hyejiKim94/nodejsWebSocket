@@ -54,6 +54,7 @@ const showResult = (answerNum, resultData) => {
         resultEls[i].innerHTML = `<br />${resultDataArr[i]}`;
         console.log(`answer is ${Number(answerNum)}`)
         if (Number(answerNum) === Number(answerEls[i].getAttribute('value'))) {
+            console.log('should be printed at least one time');
             answerEls[i].classList.add('right');
         } else {
             answerEls[i].classList.add('wrong');
@@ -80,7 +81,14 @@ ws.onmessage = (data) => {
     if (cmdType === 'page') {
         const targetPage = dataArr[1];
         const alink = document.createElement('a');
+        console.log(`/page/${targetPage}`);
         alink.setAttribute('href', `/page/${Number(targetPage)}`);
+        alink.click();
+    }
+    if (cmdType === 'character') {
+        const targetPage = dataArr[1];
+        const alink = document.createElement('a');
+        alink.setAttribute('href', `/character/${targetPage}`);
         alink.click();
     }
     if(cmdType === 'prev') {

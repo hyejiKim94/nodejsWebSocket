@@ -24,7 +24,7 @@ const http = require('http').createServer(app);
 const wss = new WebSocketServer({ port: wssPort });
 // const wss = new WebSocketServer({ server });
 const dirName = `${__dirname}/public`
-let pageNum = 1;
+let pageNum = 0;
 
 app.use(express.static("public"))
 
@@ -40,7 +40,11 @@ app.get('/start', (_, res) => {
     seq++;
     console.log(`person ${seq}`)
     // console.log(`start from quiz${pageNum}.html`);
-    res.redirect(`/page/${pageNum}`);
+    if (pageNum === 0) {
+        res.sendFile(`cha_goto.html`, { root: dirName });
+    } else {
+        res.redirect(`/page/${pageNum}`);
+    }
 })
 
 app.get('/page/:num', (req, res) => {
@@ -53,6 +57,10 @@ app.get('/page/:num', (req, res) => {
     } else {
         res.sendFile(`quiz${getNum}.html`, { root: dirName });
     }
+})
+
+app.get('/character/:name', (req, res) => {
+    res.sendFile(`/cha_${req.params.name}.html`, { root: dirName });
 })
 
 wss.broadcast = (message) => {
@@ -105,6 +113,7 @@ wss.on("connection", (ws, request) => {
                         userList.clear();
                         answerList = [];
                         ++pageNum;
+                        console.log('?? next??', pageNum);
                         console.log('answerList init', answerList);
                         wss.broadcast(`page::${pageNum}`);              
                     }
@@ -127,9 +136,14 @@ wss.on("connection", (ws, request) => {
                     break;
                 case 'init':
                     quizStarted = false;
-                    pageNum = 1;
+                    pageNum = 0;
                     userList.clear();
                     answerList = []
+                    break;
+                case 'tada':
+                    console.log('Tada character', JSON.parse(msgArr[2]).character);
+                    const character = JSON.parse(msgArr[2]).character;
+                    wss.broadcast(`character::${character}`);
                     break;
                 case 'sessionClear':
                     seq = 0;

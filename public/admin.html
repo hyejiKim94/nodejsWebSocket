@@ -13,6 +13,13 @@
     <div class="title"><img alt="star" src="/static/img/star.svg" class="starImg" />管<span class="space"></span>理<span class="space"></span>者<img alt="star" src="/static/img/star.svg" class="starImg" /></div>
     <div class="line"></div>
     <div class="menuRow">
+        <button class="adminControl" value="goto" onclick="tada(this.value)">後藤さん</button>
+        <button class="adminControl" value="hiraoka" onclick="tada(this.value)">平岡さん</button>
+        <button class="adminControl" value="ogata" onclick="tada(this.value)">緒方さん</button>
+        <button class="adminControl" value="shimoda" onclick="tada(this.value)">下田さん</button>
+        <button class="adminControl" value="kuzukawa" onclick="tada(this.value)">葛川さん</button>
+    </div>
+    <div class="menuRow">
         <!-- <img alt="text" src="/static/img/prev.svg" width="40px"> -->
         <button class="adminControl" value="prevQuiz" onclick="doSome(this.value)">前の問題</button>
         <button class="adminControl" value="nextQuiz" onclick="doSome(this.value)">次の問題</button>
@@ -77,6 +84,10 @@
                         break;
                     }
             }
+        }
+        function tada(character) {
+            const showCharacter = {character};
+            ws.send(`admin::tada::${JSON.stringify(showCharacter)}`);
         }
     </script>
   </body>
