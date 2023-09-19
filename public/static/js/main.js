@@ -1,4 +1,4 @@
-const ws = new WebSocket("ws://18.183.77.192:3001")
+const ws = new WebSocket("ws://18.181.8.214:3001")
 // const ws = new WebSocket("ws://localhost:3001");
 
 const answerEls = document.getElementsByClassName('answerBtn');
@@ -8,10 +8,8 @@ const resultEls = document.getElementsByClassName('quizResult');
 const interfaceControl = (controlType) => {
     switch(controlType) {
         case 'lock':
-            console.log('lock   ', answerEls.length);
             for(let i = 0; i < answerEls.length; i++) {
                 answerEls[i].setAttribute('disabled', 'disabled');
-                answerEls[i].removeAttribute('value');
                 answerEls[i].removeAttribute('onclick');
             }
             break;
@@ -41,20 +39,25 @@ const interfaceControl = (controlType) => {
                 }
             }, 1000);
             break;
+        case 'show':
+            document.getElementsByClassName('quizWrapper')[0].setAttribute('style', 'opacity: 1;');
+            break;
+
     }
 }
 
 const showResult = (answerNum, resultData) => {
-    console.log('answer', answerNum);
     const resultDataArr = String(resultData).split(',');
-    console.log('result Data', resultDataArr);
     // const displayEl = document.getElementsByClassName('quizResult');
+    console.log(`answer is ${Number(answerNum)}`)
     for (let i = 0; i < resultEls.length; i++) {
-        resultEls[i].innerHTML = resultDataArr[i];
-        if (Number(answerNum) === i + 1) {
-            resultEls[i].parentElement.classList.add('right');
+        resultEls[i].innerHTML = `<br />${resultDataArr[i]}`;
+        if (Number(answerNum) === Number(answerEls[i].getAttribute('value'))) {
+            console.log('should be printed at least one time');
+            answerEls[i].classList.add('right');
         } else {
-            resultEls[i].parentElement.classList.add('wrong');
+            answerEls[i].classList.add('wrong');
+            // resultEls[i].parentElement.classList.add('wrong');
         }
     }
 }
@@ -62,15 +65,48 @@ const showResult = (answerNum, resultData) => {
 ws.onmessage = (data) => {
     const dataArr = String(data.data).split('::');
     const cmdType = dataArr[0];
-    if (cmdType === 'page') {
-        location.href='/page';
+    if (cmdType === 'currentPage') {
+        if(Number(dataArr[1]) === 1) {
+            if(dataArr[2] == 'true') {
+                document.getElementsByClassName('quizWrapper')[0].setAttribute('style', 'opacity: 1;');
+            }
+        }
+        const openedPage = document.getElementById('curPage');
+        if (openedPage && Number(dataArr[1]) !== Number(openedPage.getAttribute('value'))) {
+            document.getElementsByClassName('quizWrapper')[0].remove();
+            document.getElementsByClassName('notAvailable')[0].setAttribute('style', 'display: block');
+        }
     }
-    // if (cmdType === 'session') {
-    //     console.log('get session', window.sessionStorage.getItem('userID'));
-    //     if (!window.sessionStorage.getItem('userID')) {
-    //         window.sessionStorage.setItem('userID', dataArr[1]);
-    //     }
-    // }
+    if (cmdType === 'page') {
+        const targetPage = dataArr[1];
+        const alink = document.createElement('a');
+        console.log(`/page/${targetPage}`);
+        alink.setAttribute('href', `/page/${Number(targetPage)}`);
+        alink.click();
+    }
+    if (cmdType === 'character') {
+        const targetPage = dataArr[1];
+        const alink = document.createElement('a');
+        alink.setAttribute('href', `/character/${targetPage}`);
+        alink.click();
+    }
+    if(cmdType === 'prev') {
+        const alink = document.createElement('a');
+        const curPage = document.getElementById('curPage').getAttribute('value');
+        alink.setAttribute('href', `/page/${Number(curPage)-1}`);
+        alink.click();
+    }
+    if(cmdType === 'next') {
+        const alink = document.createElement('a');
+        const curPage = document.getElementById('curPage').getAttribute('value');
+        alink.setAttribute('href', `/page/${Number(curPage)+1}`);
+        alink.click();
+    }
+    if (cmdType === 'session') {
+        if (!window.sessionStorage.getItem('userID')) {
+            window.sessionStorage.setItem('userID', dataArr[1]);
+        }
+    }
     if (cmdType === 'sessionClear') {
         if (window.sessionStorage.getItem('userID')) {
             window.sessionStorage.removeItem('userID');
@@ -91,7 +127,6 @@ function answerBtn(value) {
         if (value == i + 1) {
             answerEls[i].setAttribute('disabled', 'disabled');
             answerEls[i].classList.add('clicked');
-            console.log(answerEls[i].classList)
         } else {
             answerEls[i].removeAttribute('disabled');
             answerEls[i].removeAttribute('style');
@@ -99,6 +134,5 @@ function answerBtn(value) {
         }
     }
     const userId = window.sessionStorage.getItem('userID');
-    console.log('userID :', userId);
     ws.send(`answer::${userId}::${value}`);
 }

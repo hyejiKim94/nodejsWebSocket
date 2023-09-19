@@ -5,23 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/css/style.css">
     <title>Websocket Chatting</title>
-    <script type="text/javascript" src="/static/js/main.js"> </script>
   </head>
   <body>
-    <div>
-        <span id="userCnt"></span>
+    <div class="quizWrapper">
+      <div>
+          <span id="userCnt"></span>
+      </div>
+      <input type="hidden" id="curPage" value="6">
+      <div class="header">
+        <img alt="logo" src="/static/img/logo.png" class="logo">
+        <img alt="character" src="/static/img/ogata_satoshi.png" class="character" id="ogata">
+      </div>
+      <div id="countdown" style="opacity: 0;">10</div>
+      <div class="questionTxt">2022年現在、最も使われている8 ビットマイコンは 8085、PIC、あとひとつは？</div>
+      <div class="answerBtnWrapper">
+          <div class="btnRow">
+              <button class="answerBtn" value="1" onclick="answerBtn(this.value)"><span class="answerNum">A:</span><span class="btnTxt">ARM<span class="quizResult"></span></button>
+              <button class="answerBtn" value="2" onclick="answerBtn(this.value)"><span class="answerNum">B:</span><span class="btnTxt">AVR<span class="quizResult"></span></span></button>
+          </div>
+          <div class="btnRow">
+              <button class="answerBtn" value="3" onclick="answerBtn(this.value)"><span class="answerNum">C:</span><span class="btnTxt">FPGA<span class="quizResult"></span></span></button>
+              <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><span class="answerNum">D:</span><span class="btnTxt">RISC<span class="quizResult"></span></span></button>
+          </div>
+      </div>
     </div>
-    <div class="header">Quiz Number 6<span id="countdown"></span></div>
-    <div class="questionTxt">メモ作成、プロジェクト管理、タスク管理のためのオールインワンワークスペースで、マークダウンサポートを備えた2022年度一番人気があったメモメモアプリケーションは？</div>
-    <div class="answerBtnWrapper">
-        <div class="btnRow">
-            <button class="answerBtn" value="1" onclick="answerBtn(this.value)"><span class="btnTxt">Trello<br /><span class="quizResult"></span></button>
-            <button class="answerBtn" value="2" onclick="answerBtn(this.value)"><span class="btnTxt">Notion<br /><span class="quizResult"></span></span></button>
-        </div>
-        <div class="btnRow">
-            <button class="answerBtn" value="3" onclick="answerBtn(this.value)"><span class="btnTxt">NotePM<br /><span class="quizResult"></span></span></button>
-            <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><span class="btnTxt">Jira Work Management<br /><span class="quizResult"></span></span></button>
-        </div>
+    <div class="notAvailable">
+      今は利用不可能です<span class="emoji">٩( ᐛ )و</span><br /><div class="back" onclick="location.href='/start'">←</div>
     </div>
+    <script type="text/javascript" src="/static/js/main.js"> </script>
   </body>
 </html>
