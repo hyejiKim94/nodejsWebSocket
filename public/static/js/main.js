@@ -1,5 +1,5 @@
-const ws = new WebSocket("ws://18.181.8.214:3001")
-// const ws = new WebSocket("ws://localhost:3001");
+// const ws = new WebSocket("ws://18.181.8.214:3001")
+const ws = new WebSocket("ws://localhost:3001");
 
 const answerEls = document.getElementsByClassName('answerBtn');
 const btnTxtEls = document.getElementsByClassName('btnTxt');
