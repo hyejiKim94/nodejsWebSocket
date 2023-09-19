@@ -40,8 +40,8 @@
         <!-- <button class="adminControl" value="sessionClear" onclick="doSome(this.value)" style="pointer-events: none; background: gray;">SessionClear</button> -->
     </div>
     <script>
-        // const ws = new WebSocket("ws://localhost:3001")
-        const ws = new WebSocket("ws://18.181.8.214:3001");
+        const ws = new WebSocket("ws://localhost:3001")
+        // const ws = new WebSocket("ws://18.181.8.214:3001");
         ws.onmessage = (data) => {
             console.log(`admin side Socket: ${data}`);
         }
