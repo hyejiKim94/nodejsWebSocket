@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Websocket Chatting</title>
+  </head>
+  <body>
+    <div class="quizWrapper">
+      <div>
+          <span id="userCnt"></span>
+      </div>
+      <input type="hidden" id="curPage" value="9">
+      <div class="header">
+        <img alt="logo" src="/static/img/logo.png" class="logo">
+        <img alt="character" src="/static/img/kuzukawa_keisuke.png" class="character" id="kuzukawa">
+      </div>
+      <div id="countdown" style="opacity: 0;">10</div>
+      <div class="questionTxt">以下のプログラムはC言語で書かれています。コンパイルして実行するとどのような結果となるでしょうか。
+        <pre>
+          <code>
+  main() { 
+    printf(&unix["\021%six\012\0"],(unix)["have"]+"fun"-0x60);
+  }
+          </code>
+        </pre>
+        </div>
+      <div class="answerBtnWrapper">
+        <div class="btnRow">
+            <button class="answerBtn" value="1" onclick="answerBtn(this.value)"><span class="answerNum">A:</span><span class="btnTxt">unix<span class="quizResult"></span></button>
+            <button class="answerBtn" value="2" onclick="answerBtn(this.value)"><span class="answerNum">B:</span><span class="btnTxt">have a fun<span class="quizResult"></span></span></button>
+        </div>
+        <div class="btnRow">
+            <button class="answerBtn" value="3" onclick="answerBtn(this.value)"><span class="answerNum">C:</span><span class="btnTxt">unix is fun<span class="quizResult"></span></span></button>
+            <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><span class="answerNum">D:</span><span class="btnTxt">have<span class="quizResult"></span></span></button>
+        </div>
+      </div>
+    </div>
+    <div class="notAvailable">
+      今は利用不可能です<span class="emoji">٩( ᐛ )و</span><br /><div class="back" onclick="location.href='/start'">←</div>
+    </div>
+    <script type="text/javascript" src="/static/js/main.js"> </script>
+  </body>
+</html>

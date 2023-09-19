@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/admin-style.css">
+    <title>Websocket Chatting</title>
+  </head>
+  <body>
+    <div>
+        <span id="userCnt"></span>
+    </div>
+    <div class="title"><img alt="star" src="/static/img/star.svg" class="starImg" />管<span class="space"></span>理<span class="space"></span>者<img alt="star" src="/static/img/star.svg" class="starImg" /></div>
+    <div class="line"></div>
+    <div class="menuRow">
+        <button class="adminControl" value="goto" onclick="tada(this.value)">後藤さん</button>
+        <button class="adminControl" value="hiraoka" onclick="tada(this.value)">平岡さん</button>
+        <button class="adminControl" value="ogata" onclick="tada(this.value)">緒方さん</button>
+        <button class="adminControl" value="shimoda" onclick="tada(this.value)">下田さん</button>
+        <button class="adminControl" value="kuzukawa" onclick="tada(this.value)">葛川さん</button>
+    </div>
+    <div class="menuRow">
+        <!-- <img alt="text" src="/static/img/prev.svg" width="40px"> -->
+        <button class="adminControl" value="prevQuiz" onclick="doSome(this.value)">前の問題</button>
+        <button class="adminControl" value="nextQuiz" onclick="doSome(this.value)">次の問題</button>
+        <!-- <button class="adminControl" value="prev" onclick="doSome(this.value)">前の問題</button> -->
+        <!-- <button class="adminControl" value="next" onclick="doSome(this.value)">次の問題</button> -->
+    </div>
+    <div class="menuRow">
+        <button class="adminControl" value="lock" onclick="doSome(this.value)">選択不可</button>
+        <button class="adminControl" value="unlock" onclick="doSome(this.value)">選択可能</button>
+    </div>
+    <div class="menuRow">
+        <button class="adminControl" value="countdown" onclick="doSome(this.value)">カウントダウン</button>
+        <button class="adminControl" value="result" onclick="doSome(this.value)">結果集計</button>
+    </div>
+    <div class="menuRow">
+        <button class="adminControl" value="show" onclick="doSome(this.value)">問題表示</button>
+        <button class="adminControl" value="init" onclick="doSome(this.value)">初期化</span></button>
+        <!-- <button class="adminControl" value="sessionClear" onclick="doSome(this.value)" style="pointer-events: none; background: gray;">SessionClear</button> -->
+    </div>
+    <script>
+        // const ws = new WebSocket("ws://localhost:3001")
+        const ws = new WebSocket("ws://18.181.8.214:3001");
+        ws.onmessage = (data) => {
+            console.log(`admin side Socket: ${data}`);
+        }
+        function doSome(action) {
+            switch(action) {
+                case 'prev':
+                    ws.send('admin::prev');
+                    break;
+                case 'next':
+                    ws.send('admin::next');
+                    break;
+                case 'prevQuiz':
+                    ws.send('admin::prevQuiz');
+                    break;
+                case 'nextQuiz':
+                    ws.send('admin::nextQuiz');
+                    break;
+                case 'lock':
+                    ws.send('admin::lock');
+                    break;
+                case 'unlock':
+                    ws.send('admin::unlock');
+                    break;
+                case 'countdown':
+                    ws.send('admin::countdown');
+                    break;
+                case 'result':
+                    ws.send('admin::result');
+                    break;
+                case 'show':
+                    ws.send('admin::show');
+                    break;
+                case 'init':
+                    ws.send('admin::init');
+                    break;
+                case 'sessionClear':
+                    const confirmed = confirm('sessionをクリアしますか。')
+                    if(confirmed) {
+                        ws.send('admin::sessionClear');
+                        break;
+                    }
+            }
+        }
+        function tada(character) {
+            const showCharacter = {character};
+            ws.send(`admin::tada::${JSON.stringify(showCharacter)}`);
+        }
+    </script>
+  </body>
+</html>

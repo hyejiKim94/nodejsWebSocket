@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Websocket Chatting</title>
+  </head>
+  <body>
+    <div class="quizWrapper">
+      <div>
+          <span id="userCnt"></span>
+      </div>
+      <input type="hidden" id="curPage" value="10">
+      <div class="header">
+        <img alt="logo" src="/static/img/logo.png" class="logo">
+        <img alt="character" src="/static/img/kuzukawa_keisuke.png" class="character" id="kuzukawa">
+      </div>
+      <div id="countdown" style="opacity: 0;">10</div>
+      <div class="questionTxt">プログラミング言語、Pythonの作者はどれでしょうか。</div>
+      <div class="answerBtnWrapper">
+        <div class="imgBtnRow">
+          <button class="answerBtn" value="1" onclick="answerBtn(this.value)"><span class="answerNum">A:</span><div class="btnImg"><img alt="111" src="/static/img/image1.png" width="200px"><span class="quizResult"></span></div></button>
+          <button class="answerBtn" value="2" onclick="answerBtn(this.value)"><span class="answerNum">B:</span><div class="btnImg"><img alt="111" src="/static/img/image2.png" width="200px"><span class="quizResult"></span></div></button>
+        </div>
+        <div class="imgBtnRow">
+            <button class="answerBtn" value="3" onclick="answerBtn(this.value)"><span class="answerNum">C:</span><div class="btnImg"><img alt="111" src="/static/img/image3.png" width="200px"><span class="quizResult"></span></div></button>
+            <button class="answerBtn" value="4" onclick="answerBtn(this.value)"><span class="answerNum">D:</span><div class="btnImg"><img alt="111" src="/static/img/image4.png" width="200px"><span class="quizResult"></span></div></button>
+        </div>
+      </div>
+    </div>
+    <div class="notAvailable">
+      今は利用不可能です<span class="emoji">٩( ᐛ )و</span><br /><div class="back" onclick="location.href='/start'">←</div>
+    </div>
+    <script type="text/javascript" src="/static/js/main.js"> </script>
+  </body>
+</html>
